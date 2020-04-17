@@ -1,9 +1,12 @@
-/*
-Nama        : Mochammad Izzrul Izzrufi
-NIM         : 18318011
-Nama File   : file_eksternal.c
-Deskripsi   : Program pembacaan file eksternal dan pembentukan daftar ngram
+/* EL2208 Praktikum Pemecahan Masalah dengan C 2019/2020
+* MODUL 8 – TUGAS BESAR
+* Kelompok : 6
+* Hari dan Tanggal : Kamis, 16 April 2020
+* Asisten (NIM) : Lionel Valdarant (18316020)
+* Nama File : file_eksternal.c
+* Deskripsi : File pembacaan file eksternal dan pembentukan ngram
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
