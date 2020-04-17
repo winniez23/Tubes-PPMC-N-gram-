@@ -3,7 +3,7 @@
 * Kelompok : 6
 * Hari dan Tanggal : Kamis, 16 April 2020
 * Asisten (NIM) : Lionel Valdarant (18316020)
-* Nama File : input.c
+* Nama File : N-Grams with Input.c
 * Deskripsi : mengubah kata-kata pada file eksternal menjadi tabel n-gram beserta kode untuk menerima input user
 */
 
