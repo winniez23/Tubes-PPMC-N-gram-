@@ -1,3 +1,13 @@
+/* EL2208 Praktikum Pemecahan Masalah dengan C 2019/2020
+* MODUL 8 – TUGAS BESAR
+* Kelompok : 6
+* Hari dan Tanggal : Kamis, 16 April 2020
+* Asisten (NIM) : Lionel Valdarant (18316020)
+* Nama File : input.c
+* Deskripsi : Berisi main program dan pemecahan masalah
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,107 +18,66 @@
 ngram* OpenFile();
 
 // List variabel
-int PanjangList=0;
+long int PanjangList=0;
 char *filename;
 int n;
 int RandWord;
 ngram *NList;
-
-
 int main(){
-	int c, i, pil1;
+	int c,pil1;
 	Queue Q;
-	char* X;
-	char pil;
+	int i;
+	int banyak_kata;
+	int start;
+	char pil='Y';
 
-	printf("----------MAIN MENU----------\n");
-    printf("Program ini akan menerima sebuah input n dari pengguna yang\n");
-    printf("harus bernilai 2 atau lebih agar tidak menghasilkan\n");
-    printf("kalimat random. Kemudian, pengguna akan diminta memasukkan jumlah\n");
-    printf("kata random yang ingin dicetak(haruslah bernilai 2000 atau lebih).\n");
-    printf("Silakan mencoba~~\n");
-    printf("Tekan huruf Y untuk memulai program, dan tekan huruf X untuk keluar.\n");
-    scanf("%c", &pil);
+	while(pil=='Y' || pil=='y'){
+        printf("----------MAIN MENU----------\n");
+        printf("Program ini akan menerima sebuah input n dari pengguna yang\n");
+        printf("harus bernilai 2 atau lebih agar tidak menghasilkan\n");
+        printf("kalimat random. Kemudian, pengguna akan diminta memasukkan jumlah\n");
+        printf("kata random yang ingin dicetak(haruslah bernilai 2000 atau lebih).\n");
+        printf("Silakan mencoba~~\n");
+        printf("Tekan huruf Y untuk memulai program, dan tekan huruf X untuk keluar.\n");
+        scanf("%c", &pil);
 
-    if (pil=='Y'||pil=='y')
-    do
-    {
-        filename = malloc(sizeof(char));
-        filename[0]='\0';
+        filename = (char*)malloc(100*sizeof(char));
         printf("Masukkan nama file : ");
         scanf("%s", filename);
 
-        printf("\nMasukkan nilai N untuk N gram : ");
+        printf("Masukkan nilai N untuk N gram : ");
         scanf("%d", &n);
         while (n < 2) //cek masukan nilai n
         {
             printf("Masukkan nilai N tidak boleh dibawah 2! Silahkan ulangi");
             scanf("%d", n);
         }
-
         printf("Berapa banyak kata random yang ingin dibentuk : ");
         scanf("%d", &RandWord); //RandWord == banyak kata
-
-
-        createEmpty(&Q);
-
-        // ini dihapus nanti
-        //int* index_found_array;
-        //index_found_array = (int*)malloc(100*sizeof(int));
-        OpenFile(); // Pembentukan array ngram di main
-
-        char* string_awal;
-        char* key_current;
-        string_awal = (char*) malloc (100*n*sizeof(char));
-        X = (char*) malloc (100*sizeof(char));
-        key_current = (char*) malloc (n*100*sizeof(char));
-        strcpy(string_awal,NList[2].key);
-        strcpy(key_current,string_awal);
-
-        generate (key_current, &RandWord, &Q, NList, PanjangList);
-
-        printf("...");
-        printf("%s",string_awal);
-        Print(&Q);
-        printf("...");
-
-        printf("\nApakah pengguna ingin memasukkan jumlah kata lagi?\n");
-        printf("Tekan 1 untuk memasukkan kata lagi, 0 untuk kembali ke main menu.\n");
-        scanf("%d", &pil1);
-        if (pil1==1)
-        do
-        {
-            createEmpty(&Q);
-
-            // ini dihapus nanti
-            //int* index_found_array;
-            //index_found_array = (int*)malloc(100*sizeof(int));
-            OpenFile(); // Pembentukan array ngram di main
-
-            char* string_awal;
-            char* key_current;
-            string_awal = (char*) malloc (100*n*sizeof(char));
-            X = (char*) malloc (100*sizeof(char));
-            key_current = (char*) malloc (n*100*sizeof(char));
-            strcpy(string_awal,NList[2].key);
-            strcpy(key_current,string_awal);
-
-            generate (key_current, &RandWord, &Q, NList, PanjangList);
-
-            printf("...");
-            printf("%s",string_awal);
-            Print(&Q);
-            printf("...");
-
-        } while (pil1==1);
-        //free(index_found_array);
-        free(X);
-        free(key_current);
-        free(string_awal);
-
+        pil1 = 1;
+        while(pil1 == 1){
+            OpenFile();
+            if(NList!=NULL){
+                createEmpty(&Q);
+                //start = rand() %(PanjangList + 1 - 0) + 0;
+                start = 3;
+                printf("... %s",NList[start].key);
+                banyak_kata = RandWord-n;
+                generate (&banyak_kata,PanjangList,&Q,NList, &start);
+                //Print(&Q);
+                printf("\nApakah pengguna ingin memasukkan jumlah kata lagi?\n");
+                printf("Tekan 1 untuk memasukkan kata lagi, 0 untuk kembali ke main menu.\n");
+                scanf("%d", &pil1);
+            }
+        }
         free(NList);
-    } while (pil=='Y'||pil=='y');
-    return 0;
+        printf("Tekan huruf Y untuk memulai program, dan tekan huruf X untuk keluar.\n");
+        scanf("%trash", &pil);
+        scanf("%c", &pil);
+        system("cls");
+	}
+
+	return 0;
 }
 
 ngram* OpenFile(){

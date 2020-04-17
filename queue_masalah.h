@@ -1,13 +1,11 @@
 /* EL2208 Praktikum Pemecahan Masalah dengan C 2019/2020
 * MODUL 8 – TUGAS BESAR
 * Kelompok : 6
-* Hari dan Tanggal : Jumat, 17 April 2020
+* Hari dan Tanggal : Kamis, 16 April 2020
 * Asisten (NIM) : Lionel Valdarant (18316020)
-* Nama File : queue_masalah.h
-* Deskripsi : deklarasi fungsi ekstrenal untuk queue dan pemecahan masalah
+* Nama File : input.c
+* Deskripsi : berisi library untuk queue
 */
-
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,7 +18,7 @@ typedef struct //struct untuk tabel n-gram
 	char* key;
 	char* value;
 }
-gram;
+ngram;
 
 typedef struct node{ //struct untuk menyimpan beberapa value dalam satu key
 	char* valueq;
@@ -42,7 +40,4 @@ void Push(Queue* Q, char*);
 void Pop(Queue* Q, char*);
 void Print(Queue*);
 
-//n itu berapa banyak tabel gram yang dibentuk
-void Search (char* key_current, gram tabel_gram[],int index_found_array[],int* count,int N); //untuk mencari berapa kali sebuah key muncul dalam tabel n-gram
-
-void generate (char* key_current, int* banyak_kata, Queue* Q, gram tabel_gram[], int N); //menghasilkan queue yang berisi kata2 yang telah digenerate berdasarkan tabel n-gram
+void generate (int* banyak_kata,int panjangList,  Queue* Q, ngram* tabel_gram, int* start); //menghasilkan queue yang berisi kata2 yang telah digenerate berdasarkan tabel n-gram
