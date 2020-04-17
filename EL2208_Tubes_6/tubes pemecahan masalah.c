@@ -52,10 +52,11 @@ int main(){
             printf("Masukkan nilai N tidak boleh dibawah 2! Silahkan ulangi");
             scanf("%d", n);
         }
-        printf("Berapa banyak kata random yang ingin dibentuk : ");
-        scanf("%d", &RandWord); //RandWord == banyak kata
+        
         pil1 = 1;
         while(pil1 == 1){
+			printf("Berapa banyak kata random yang ingin dibentuk : ");
+			scanf("%d", &RandWord); //RandWord == banyak kata
             OpenFile();
             if(NList!=NULL){
                 createEmpty(&Q);
